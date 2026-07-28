@@ -89,13 +89,16 @@ The revision follows four editorial rules:
 
 10. **“Rabbinic and later Jewish teachers frequently liken Torah…” — replace
     with the primary source.** The claim was true but unnecessarily vague. The
-    revision quotes the structure of *Devarim Rabbah*’s separate bee
-    interpretations.
+    revision sets out *Devarim Rabbah*’s separate bee interpretations and quotes
+    the honey-and-sting clause directly, so that the article’s central evidence is
+    visible rather than summarized.
 
 11. **“The double effect has a classical Talmudic formulation…” — qualify.**
     *Yoma* 72b and *Taanit* 7a are parallels, not sources for the bee reading.
     “Precisely the moral” made an unsupported identification. The revision states
-    that neither passage mentions bees.
+    that neither passage mentions bees, and distinguishes the three groups the
+    elixir-and-potion image is applied to: those who keep or transgress the
+    commandments, Israel and idolaters, and the worthy or unworthy student.
 
 12. **“The sting also has a scriptural cognate in the goad…” — keep, temper.**
     Ecclesiastes and *Chagigah* give a useful comparison, but “give Torah’s words
@@ -106,7 +109,9 @@ The revision follows four editorial rules:
     separate.** The sources were relevant but represented different genres and
     periods. The revision distinguishes biblical honey, aggadah, *Sifrei*, and the
     medieval initiation rite and notes that the rite was not based specifically
-    on Deuteronomy’s title.
+    on Deuteronomy’s title. *Sifrei* 306 is described as collecting several
+    interpretations of the rain and dew figures, not one graded scale of
+    gentleness and force.
 
 14. **“Halakhic literature contributes a further twist…” — qualify.**
     *Bekhorot* 7b concerns the legal status of honey. The sentence “sweetness may
@@ -262,8 +267,11 @@ The revision follows four editorial rules:
     presented as analysis.
 
 42. **“Rabbinic sources treat her prominence…” — keep, source carefully.**
-    *Megillah* and *Pesachim* are identifiable. The anthology tradition is
-    retained with a warning that wording and numbering vary.
+    *Megillah* and *Pesachim* are identifiable and are retained. The claim that
+    aggadic anthologies explain Deborah’s name through the bee’s honey and sting
+    could not be verified at any specific locus, so it is removed rather than
+    hedged. The footnote now states that *Pesachim* 66b treats her self-reference
+    as a warning against pride and does not develop a honey-and-sting reading.
 
 43. **“Her judicial role generated sustained halakhic discussion…” — keep,
     clarify *Tomer Devorah*.** The legal debate is useful. Cordovero’s title comes
@@ -358,3 +366,31 @@ now presents objections that a critical reader could reasonably make:
 The goal of these changes is not to disprove the wordplay. It is to make clear
 what kind of claim is being made at each stage: lexical, textual, midrashic,
 literary, mystical, comparative, or devotional.
+
+## Follow-up pass
+
+A second pass closed the gaps between this review and the article, and applied
+several points of precision that the first revision had left open.
+
+- **Moses as speaker restored to its proper section.** Item 6 removed his
+  “I am not a man of words” material from the linguistic background but did not
+  place it anywhere. It now appears in the classical interpretation section with
+  *Devarim Rabbah* 1:1 on the healing of his tongue and R. Tanchuma’s parable of
+  the purple cloth. The unsourced *milah*/circumcision homograph remains out.
+- **The source midrash is quoted.** A short block quotation of the honey-and-sting
+  clause from *Devarim Rabbah* 1:6 replaces a paraphrase of the article’s own
+  central evidence.
+- **The exclusionary version is stated where it occurs.** The critical section
+  already mentioned Torah as “an elixir of life for Israel and a potion of death
+  for idolaters”; the classical section now reports it too, so the objection is
+  raised about a formulation the reader has actually seen.
+- **Three applications of the elixir image are distinguished** rather than merged
+  into one moral about the recipient.
+- **Clarke’s authorship view returns as reception.** Item 18 called for it; the
+  first pass deleted it. His judgement that Deuteronomy 1:1–5 was added “probably
+  either by Joshua or Ezra” now sits with his other comments and points forward to
+  the discussion of compositional models.
+- **Verse numbering and footnote order.** Hosea 2:16 is given with its common
+  English numbering, and the reference list was renumbered in order of first
+  appearance so that the note markers and the printed list agree without the
+  ordering workaround the first pass had used.
