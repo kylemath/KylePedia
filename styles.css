@@ -1,0 +1,655 @@
+/* Wikipedia-inspired Vector layout for local Live Server preview */
+
+:root {
+  --wiki-bg: #f8f9fa;
+  --wiki-page: #ffffff;
+  --wiki-border: #a7d7f9;
+  --wiki-border-soft: #c8ccd1;
+  --wiki-link: #0645ad;
+  --wiki-link-visited: #0b0080;
+  --wiki-link-hover: #0b6bcb;
+  --wiki-text: #202122;
+  --wiki-muted: #54595d;
+  --wiki-infobox-bg: #f8f9fa;
+  --wiki-toc-bg: #f8f9fa;
+  --wiki-header-bg: #ffffff;
+  --wiki-accent: #36c;
+  --content-width: 990px;
+  --sidebar-width: 180px;
+  --font-sans: "Linux Libertine", "Georgia", "Times New Roman", serif;
+  --font-ui: "Helvetica Neue", "Segoe UI", "Liberation Sans", sans-serif;
+  --font-mono: "Menlo", "Consolas", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--wiki-text);
+  background: var(--wiki-bg);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--wiki-link);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--wiki-link-visited);
+}
+
+a:hover {
+  color: var(--wiki-link-hover);
+  text-decoration: underline;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.he {
+  font-family: "David Libre", "Times New Roman", "Noto Sans Hebrew", serif;
+  font-size: 1.15em;
+}
+
+/* Header */
+.mw-header {
+  background: var(--wiki-header-bg);
+  border-bottom: 1px solid var(--wiki-border-soft);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.mw-header-inner {
+  max-width: calc(var(--content-width) + var(--sidebar-width) + 4rem);
+  margin: 0 auto;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mw-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mw-logo:hover,
+.mw-logo:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mw-logo-mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.35rem;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #eaf3ff 55%, #cce0f5 100%);
+}
+
+.mw-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.mw-logo-wordmark {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+.mw-logo-tagline {
+  font-size: 0.72rem;
+  color: var(--wiki-muted);
+  letter-spacing: 0.02em;
+}
+
+.mw-search {
+  display: flex;
+  flex: 1 1 16rem;
+  max-width: 28rem;
+  gap: 0.35rem;
+}
+
+.mw-search input {
+  flex: 1;
+  border: 1px solid var(--wiki-border-soft);
+  border-radius: 2px;
+  padding: 0.4rem 0.55rem;
+  font: inherit;
+}
+
+.mw-search input:focus {
+  outline: 2px solid #36c;
+  outline-offset: -1px;
+  border-color: #36c;
+}
+
+.mw-search button {
+  border: 1px solid var(--wiki-border-soft);
+  background: #f8f9fa;
+  border-radius: 2px;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.mw-search button:hover {
+  background: #eaecf0;
+}
+
+.mw-user-links {
+  display: flex;
+  gap: 0.85rem;
+  margin-left: auto;
+  font-size: 0.85rem;
+}
+
+/* Page layout */
+.mw-page {
+  max-width: calc(var(--content-width) + var(--sidebar-width) + 4rem);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  gap: 0;
+  min-height: calc(100vh - 4rem);
+}
+
+.mw-sidebar {
+  padding: 1rem 0.75rem 2rem 1rem;
+  font-size: 0.85rem;
+  border-right: 1px solid transparent;
+}
+
+.sidebar-heading {
+  margin: 1.1rem 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--wiki-muted);
+  text-transform: none;
+  border-bottom: 1px solid var(--wiki-border-soft);
+  padding-bottom: 0.2rem;
+}
+
+.sidebar-heading:first-child {
+  margin-top: 0.25rem;
+}
+
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin: 0.15rem 0;
+}
+
+.sidebar-nav a {
+  display: inline-block;
+  padding: 0.1rem 0;
+}
+
+/* Main article */
+.mw-content {
+  background: var(--wiki-page);
+  border: 1px solid var(--wiki-border);
+  border-top: none;
+  padding: 1rem 1.5rem 2rem;
+  min-width: 0;
+}
+
+.mw-indicators {
+  color: var(--wiki-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.firstHeading {
+  font-family: var(--font-sans);
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0 0 0.35rem;
+  border-bottom: 1px solid var(--wiki-border-soft);
+  padding-bottom: 0.2rem;
+}
+
+.hatnote {
+  font-style: italic;
+  color: var(--wiki-muted);
+  margin: 0.75rem 0 1rem;
+}
+
+.mw-article-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--wiki-border-soft);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.vector-menu-tabs,
+.vector-menu-views {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.vector-menu-tabs a,
+.vector-menu-views a {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+  color: var(--wiki-link);
+  font-size: 0.9rem;
+}
+
+.vector-menu-tabs a.selected,
+.vector-menu-views a.selected {
+  background: var(--wiki-page);
+  border-color: var(--wiki-border-soft);
+  border-bottom-color: var(--wiki-page);
+  margin-bottom: -1px;
+  color: var(--wiki-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mw-body-content {
+  font-size: 0.95rem;
+}
+
+.mw-body-content p,
+.mw-body-content li {
+  max-width: 46rem;
+}
+
+.lead {
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.mw-body-content h2 {
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 400;
+  border-bottom: 1px solid var(--wiki-border-soft);
+  margin: 1.5rem 0 0.6rem;
+  padding-bottom: 0.15rem;
+  scroll-margin-top: 4.5rem;
+}
+
+.mw-body-content section:first-of-type h2 {
+  margin-top: 1.1rem;
+}
+
+.mw-body-content ul {
+  padding-left: 1.4rem;
+}
+
+.mw-body-content li {
+  margin: 0.25rem 0;
+}
+
+/* Infobox */
+.infobox {
+  float: right;
+  clear: right;
+  width: 22rem;
+  max-width: 100%;
+  margin: 0 0 1rem 1.25rem;
+  background: var(--wiki-infobox-bg);
+  border: 1px solid var(--wiki-border-soft);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.infobox-title {
+  background: #eaecf0;
+  text-align: center;
+  font-weight: 700;
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid var(--wiki-border-soft);
+}
+
+.infobox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.infobox th,
+.infobox td {
+  padding: 0.4rem 0.55rem;
+  vertical-align: top;
+  border-top: 1px solid #eaecf0;
+}
+
+.infobox th {
+  width: 38%;
+  text-align: left;
+  font-weight: 600;
+  background: #f8f9fa;
+}
+
+/* TOC */
+.toc {
+  display: table;
+  padding: 0.7rem 1rem 0.85rem;
+  background: var(--wiki-toc-bg);
+  border: 1px solid var(--wiki-border-soft);
+  margin: 0.5rem 0 1.25rem;
+  font-size: 0.9rem;
+}
+
+.toctitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.toctitle h2 {
+  display: inline;
+  border: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-ui);
+  padding: 0;
+}
+
+.toc-toggle {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+#toc-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+}
+
+#toc-list li {
+  margin: 0.15rem 0;
+}
+
+#toc-list a.is-active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.toc.is-collapsed #toc-list {
+  display: none;
+}
+
+/* References */
+.references {
+  padding-left: 1.5rem;
+}
+
+.references li {
+  margin: 0.45rem 0;
+  max-width: 50rem;
+}
+
+.reference a {
+  font-size: 0.8em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+.mw-cite-backlink {
+  margin-right: 0.25rem;
+}
+
+/* Categories */
+.catlinks {
+  border: 1px solid var(--wiki-border-soft);
+  background: #f8f9fa;
+  padding: 0.55rem 0.75rem;
+  margin-top: 2rem;
+  clear: both;
+  font-size: 0.88rem;
+}
+
+.catlinks-label {
+  display: inline;
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
+
+.catlinks-label::after {
+  content: ":";
+}
+
+.catlinks ul {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.catlinks li {
+  display: inline;
+}
+
+.catlinks li:not(:last-child)::after {
+  content: " | ";
+  color: var(--wiki-muted);
+}
+
+/* Footer */
+.mw-footer {
+  clear: both;
+  margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--wiki-border-soft);
+  color: var(--wiki-muted);
+  font-size: 0.82rem;
+}
+
+.mw-footer p {
+  margin: 0.35rem 0;
+  max-width: none;
+}
+
+button.linkish {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--wiki-link);
+  font: inherit;
+  cursor: pointer;
+}
+
+button.linkish:hover {
+  text-decoration: underline;
+  color: var(--wiki-link-hover);
+}
+
+/* Scripture quotations */
+.mw-body-content blockquote.verse {
+  margin: 1rem 0 1.2rem;
+  padding: 0.6rem 1rem 0.7rem;
+  background: #f8f9fa;
+  border-left: 3px solid var(--wiki-border-soft);
+  max-width: 44rem;
+}
+
+.verse-he {
+  display: block;
+  direction: rtl;
+  text-align: right;
+  font-family: "David Libre", "Times New Roman", "Noto Sans Hebrew", serif;
+  font-size: 1.3em;
+  line-height: 1.95;
+}
+
+.verse-tr {
+  display: block;
+  margin-top: 0.45rem;
+  font-style: italic;
+  color: #333;
+}
+
+.verse-en {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.verse-ref {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  font-style: normal;
+}
+
+.verse-he b,
+.verse-tr b,
+.verse-en b {
+  font-weight: 700;
+}
+
+.sc {
+  font-variant: small-caps;
+}
+
+/* Citation conventions note under the reference list */
+.cite-caveat {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--wiki-muted);
+  margin-top: 0.85rem;
+  max-width: 50rem;
+}
+
+.mw-body-content cite {
+  font-style: italic;
+}
+
+/* Search highlight */
+mark.search-hit {
+  background: #ffe066;
+  color: inherit;
+  padding: 0 0.1em;
+}
+
+/* Print */
+@media print {
+  .mw-header,
+  .mw-sidebar,
+  .mw-article-toolbar,
+  .skip-link {
+    display: none !important;
+  }
+
+  .mw-page {
+    display: block;
+  }
+
+  .mw-content {
+    border: 0;
+    padding: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .infobox {
+    break-inside: avoid;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .mw-page {
+    grid-template-columns: 1fr;
+  }
+
+  .mw-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--wiki-border-soft);
+    padding-bottom: 0.75rem;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+  }
+
+  .sidebar-heading {
+    flex-basis: 100%;
+  }
+
+  .infobox {
+    float: none;
+    width: 100%;
+    margin: 0 0 1rem;
+  }
+
+  .mw-content {
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .mw-user-links {
+    margin-left: 0;
+    width: 100%;
+  }
+}
