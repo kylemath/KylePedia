@@ -394,3 +394,41 @@ several points of precision that the first revision had left open.
   English numbering, and the reference list was renumbered in order of first
   appearance so that the note markers and the printed list agree without the
   ordering workaround the first pass had used.
+
+## Stylistic pass
+
+The second revision was accurate but had acquired a habit of narrating
+disciplines instead of reporting findings: “a historical linguist asks whether…,
+a midrash asks what…”, “traditional commentators reconcile, while
+historical-critical scholarship asks…”, “source-critical readings instead
+examine…”. The effect was of a writer trying on hats rather than of a reader who
+has been through the material and reached a view. A third pass rewrote those
+passages to state the analysis directly and to say who holds what, without
+staging a comparison of methods.
+
+Related changes:
+
+- **The critical section was dissolved into the body.** “Alternative
+  interpretations and critical perspectives” had become an appendix of bolded
+  verdicts, each repeating a subject the article had already covered. Every point
+  now sits with the material it judges: the limits of the etymology in the
+  linguistic background, authorial intent beside the spelling of 1:44, the
+  commentators’ bee biology with the commentators, the chapter-frame correction in
+  the section on the book’s frames, the “complexity” argument with the comparison
+  of vocabulary, audience-dependence with the sound patterning, the mystical
+  material with the Kabbalah, dating with Moses’ voice, and the exclusionary
+  version of the midrash beside the midrash itself.
+- **`#Scholarly_notes` was kept and repurposed.** The authoring specification
+  expects that section in a `stable` entry, so the id remains, now headed
+  *Assessment* and carrying two paragraphs of summary judgement rather than a
+  checklist. No page linked to the old heading text.
+- **Repeated disclaimers were consolidated.** Four separate sentences had
+  explained that a source “is not, by itself, an interpretation of the bee
+  comparison.” The Kabbalah section now says this once, at the top, and then
+  presents its sources.
+- **Self-reference removed.** The lead no longer tells the reader what the
+  article will distinguish, and the body no longer reports what “the article”
+  does.
+- **Footnotes re-pointed.** Moving the critical material shifted several markers
+  onto the wrong notes; each citation was checked against the content of the note
+  it cites, and the list renumbered again by first appearance.
