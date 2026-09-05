@@ -3,7 +3,7 @@
   "title": "Bees",
   "oneLiner": "A reference library of long-form writing, kept in encyclopedia form: stable",
   "kind": "project",
-  "status": "active",
+  "status": "published",
   "screenshot": "./screenshot.png",
   "server": {
     "type": "static",
