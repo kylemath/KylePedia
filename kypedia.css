@@ -1,0 +1,908 @@
+/* ==========================================================================
+   Kypedia brand layer
+   Loaded after styles.css. Overrides the Vector chrome with the Kypedia
+   palette and adds the portal, browse, and article-metadata components.
+   Article typography itself is inherited from styles.css unchanged.
+   ========================================================================== */
+
+:root {
+  /* Honey chrome over the neutral reading surface */
+  --k-honey: #c8930a;
+  --k-honey-deep: #8a6208;
+  --k-honey-soft: #f6ecd2;
+  --k-honey-line: #e2cd97;
+  --k-comb: #fdf8ec;
+  --k-ink: #241d0e;
+
+  --k-seed: #7a7f86;
+  --k-draft: #a8600b;
+  --k-working: #1d6d3f;
+  --k-stable: #2a4b8d;
+
+  /* Retune the inherited Vector variables */
+  --wiki-border: var(--k-honey-line);
+  --wiki-accent: var(--k-honey-deep);
+  --wiki-bg: #f7f6f2;
+}
+
+/* --------------------------------------------------------------- Chrome -- */
+
+.mw-header {
+  border-bottom: 1px solid var(--k-honey-line);
+  box-shadow: inset 0 -3px 0 var(--k-honey-soft);
+}
+
+.mw-logo-mark {
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(160deg, #f7d778 0%, #e0ad1f 55%, #c8930a 100%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  color: var(--k-ink);
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.mw-logo-wordmark {
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  font-size: 1.3rem;
+}
+
+.mw-logo-tagline {
+  font-style: italic;
+}
+
+.mw-search input:focus {
+  outline-color: var(--k-honey);
+  border-color: var(--k-honey);
+}
+
+.mw-search button {
+  background: var(--k-honey-soft);
+  border-color: var(--k-honey-line);
+}
+
+.mw-search button:hover {
+  background: #efe0bd;
+}
+
+.sidebar-heading {
+  border-bottom-color: var(--k-honey-line);
+}
+
+.mw-sidebar .k-sidebar-note {
+  margin: 1.25rem 0 0;
+  font-size: 0.78rem;
+  color: var(--wiki-muted);
+  line-height: 1.45;
+}
+
+/* ------------------------------------------------------- Portal / home -- */
+
+.k-portal {
+  min-width: 0;
+}
+
+.k-banner {
+  border: 1px solid var(--k-honey-line);
+  background: var(--k-comb);
+  padding: 1.1rem 1.35rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.k-banner h1 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+}
+
+.k-banner p {
+  margin: 0.4rem 0 0;
+  max-width: 44rem;
+}
+
+.k-banner-stats {
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px dotted var(--k-honey-line);
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+}
+
+.k-banner-stats b {
+  color: var(--wiki-text);
+  font-weight: 700;
+}
+
+.k-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.k-panel {
+  border: 1px solid var(--wiki-border-soft);
+  background: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.k-panel:last-child {
+  margin-bottom: 0;
+}
+
+.k-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--k-honey-soft);
+  border-bottom: 1px solid var(--k-honey-line);
+  padding: 0.45rem 0.8rem;
+}
+
+.k-panel-head h2 {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.k-panel-head .k-panel-more {
+  font-size: 0.8rem;
+}
+
+.k-panel-body {
+  padding: 0.85rem 0.9rem 1rem;
+}
+
+.k-panel-body > :first-child {
+  margin-top: 0;
+}
+
+.k-panel-body > :last-child {
+  margin-bottom: 0;
+}
+
+.k-panel-body p {
+  max-width: 42rem;
+}
+
+/* Featured entry */
+
+.k-featured-title {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  margin: 0 0 0.3rem;
+}
+
+.k-featured-excerpt {
+  margin: 0.35rem 0 0.6rem;
+}
+
+.k-featured-foot {
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+}
+
+/* Collection grid */
+
+.k-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.85rem;
+}
+
+.k-card {
+  display: flex;
+  gap: 0.7rem;
+  border: 1px solid var(--wiki-border-soft);
+  background: var(--wiki-bg);
+  padding: 0.7rem 0.8rem;
+  min-width: 0;
+}
+
+.k-card:hover {
+  border-color: var(--k-honey);
+  background: var(--k-comb);
+}
+
+.k-card-mark {
+  flex: 0 0 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: var(--k-ink);
+  background: linear-gradient(160deg, #f7d778 0%, #e0ad1f 100%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.k-card-body {
+  min-width: 0;
+}
+
+.k-card-title {
+  display: block;
+  font-weight: 700;
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+}
+
+.k-card-blurb {
+  display: block;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  line-height: 1.45;
+}
+
+.k-card-count {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--wiki-muted);
+}
+
+/* Entry lists */
+
+.k-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.k-list > li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dotted var(--wiki-border-soft);
+  max-width: none;
+}
+
+.k-list > li:first-child {
+  padding-top: 0;
+}
+
+.k-list > li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.k-list-title {
+  font-weight: 600;
+}
+
+.k-list-meta {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--wiki-muted);
+  margin-top: 0.1rem;
+}
+
+.k-list-summary {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  max-width: 44rem;
+}
+
+.k-empty {
+  font-style: italic;
+  color: var(--wiki-muted);
+  margin: 0;
+}
+
+/* Status badges */
+
+.k-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0 0.35rem;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  vertical-align: 0.08em;
+  white-space: nowrap;
+}
+
+.k-badge-seed {
+  color: var(--k-seed);
+}
+
+.k-badge-draft {
+  color: var(--k-draft);
+}
+
+.k-badge-working {
+  color: var(--k-working);
+}
+
+.k-badge-stable {
+  color: var(--k-stable);
+}
+
+.k-badge-planned {
+  color: var(--k-seed);
+}
+
+/* Tag chips and cloud */
+
+.k-chip {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 0.05rem 0.45rem;
+  margin: 0 0.2rem 0.3rem 0;
+  border: 1px solid var(--k-honey-line);
+  border-radius: 999px;
+  background: var(--k-comb);
+  white-space: nowrap;
+}
+
+.k-chip:hover {
+  background: var(--k-honey-soft);
+  border-color: var(--k-honey);
+  text-decoration: none;
+}
+
+.k-chip-count {
+  color: var(--wiki-muted);
+  font-size: 0.9em;
+}
+
+.k-chip.is-current {
+  background: var(--k-honey);
+  border-color: var(--k-honey-deep);
+  color: #fff;
+}
+
+.k-facet {
+  margin: 0 0 0.9rem;
+}
+
+.k-facet:last-child {
+  margin-bottom: 0;
+}
+
+.k-facet-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wiki-muted);
+  margin-bottom: 0.3rem;
+}
+
+.k-facet-hint {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------- Browse --- */
+
+.k-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-end;
+  border: 1px solid var(--wiki-border-soft);
+  background: var(--wiki-bg);
+  padding: 0.75rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.k-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.8rem;
+}
+
+.k-field label {
+  font-weight: 700;
+  color: var(--wiki-muted);
+  letter-spacing: 0.02em;
+}
+
+.k-field input,
+.k-field select {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid var(--wiki-border-soft);
+  border-radius: 2px;
+  background: #fff;
+  min-width: 11rem;
+}
+
+.k-field input:focus,
+.k-field select:focus {
+  outline: 2px solid var(--k-honey);
+  outline-offset: -1px;
+}
+
+.k-controls-actions {
+  margin-left: auto;
+  font-size: 0.85rem;
+}
+
+.k-result-count {
+  color: var(--wiki-muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.75rem;
+}
+
+.k-group {
+  margin: 0 0 1.5rem;
+}
+
+.k-group-head {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-bottom: 1px solid var(--k-honey-line);
+  padding-bottom: 0.15rem;
+  margin: 0 0 0.6rem;
+}
+
+.k-group-blurb {
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  margin: -0.35rem 0 0.6rem;
+  max-width: 44rem;
+}
+
+/* --------------------------------------------- Article metadata blocks -- */
+
+.k-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  margin-bottom: 0.25rem;
+}
+
+.k-breadcrumb .k-sep {
+  margin: 0 0.35rem;
+  color: var(--wiki-border-soft);
+}
+
+.k-article-meta {
+  border: 1px solid var(--wiki-border-soft);
+  border-left: 3px solid var(--k-honey);
+  background: var(--wiki-bg);
+  padding: 0.55rem 0.75rem;
+  margin: 0 0 1.1rem;
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.1rem;
+  max-width: 46rem;
+}
+
+.k-article-meta b {
+  color: var(--wiki-text);
+  font-weight: 600;
+}
+
+.catlinks .k-taglist {
+  display: block;
+  margin-top: 0.45rem;
+}
+
+/* Copy-link affordance on section headings */
+
+.mw-body-content h2 {
+  position: relative;
+}
+
+.k-anchor {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  font-family: var(--font-ui);
+  opacity: 0;
+  transition: opacity 0.12s ease-in-out;
+  border: 0;
+  background: none;
+  padding: 0 0.15rem;
+  color: var(--wiki-link);
+  cursor: pointer;
+  vertical-align: 0.15em;
+}
+
+.mw-body-content h2:hover .k-anchor,
+.k-anchor:focus {
+  opacity: 1;
+}
+
+.k-anchor.is-copied {
+  opacity: 1;
+  color: var(--k-working);
+}
+
+/* Library-wide search fallback shown when an in-page find misses */
+
+.k-search-fallback {
+  font-size: 0.8rem;
+  margin: 0.3rem 0 0;
+  flex-basis: 100%;
+  color: var(--wiki-muted);
+}
+
+.k-search-fallback[hidden] {
+  display: none;
+}
+
+/* ------------------------------------------------- Content components -- */
+/* Used inside article bodies. Documented in AGENTS.md §9.2. */
+
+/* Parallel bilingual text: original and translation side by side, one row
+   per paragraph pair. Collapses to a single column when the Hebrew is
+   hidden or the viewport is narrow. */
+
+.k-parallel {
+  margin: 1rem 0 1.4rem;
+  border-top: 1px solid var(--k-honey-line);
+  max-width: 62rem;
+}
+
+.k-parallel-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0 1.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.k-parallel-row > div {
+  min-width: 0;
+}
+
+.k-parallel-he {
+  direction: rtl;
+  text-align: right;
+  font-family: "David Libre", "Times New Roman", "Noto Sans Hebrew", serif;
+  font-size: 1.08em;
+  line-height: 1.95;
+}
+
+.k-parallel-ar {
+  direction: rtl;
+  text-align: right;
+  font-family: "Amiri", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  font-size: 1.12em;
+  line-height: 2.05;
+}
+
+/* Collapsed to the translation alone, the block should read as ordinary
+   prose: no column, no rules, plain paragraph spacing. */
+
+.k-parallel.is-en-only {
+  border-top: 0;
+  margin: 0;
+  max-width: 46rem;
+}
+
+.k-parallel.is-en-only .k-parallel-he,
+.k-parallel.is-en-only .k-parallel-ar {
+  display: none;
+}
+
+.k-parallel.is-en-only .k-parallel-row {
+  display: block;
+  border-bottom: 0;
+  padding: 0;
+  margin: 0 0 0.9rem;
+}
+
+.k-parallel.is-en-only .k-parallel-row:last-child {
+  margin-bottom: 0;
+}
+
+.k-parallel.is-en-only .k-parallel-en {
+  max-width: 46rem;
+}
+
+.k-parallel-control {
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+  margin: 0.5rem 0 0;
+}
+
+/* Figures. Default is a floated plate the width of the infobox; add
+   .k-figure-wide for a full-column plate. */
+
+.mw-body-content .k-figure {
+  float: right;
+  clear: right;
+  width: 22rem;
+  max-width: 100%;
+  margin: 0.3rem 0 1rem 1.35rem;
+  padding: 0.35rem;
+  border: 1px solid var(--wiki-border-soft);
+  background: var(--wiki-bg);
+}
+
+.k-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.k-figure figcaption {
+  padding: 0.45rem 0.3rem 0.15rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--wiki-muted);
+}
+
+.mw-body-content .k-figure-wide {
+  float: none;
+  clear: both;
+  width: 100%;
+  max-width: 46rem;
+  margin: 1.35rem 0;
+}
+
+/* Data tables. */
+
+.k-table {
+  width: 100%;
+  max-width: 46rem;
+  border-collapse: collapse;
+  margin: 1rem 0 1.35rem;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.k-table caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding-bottom: 0.35rem;
+}
+
+.k-table th,
+.k-table td {
+  border: 1px solid var(--wiki-border-soft);
+  padding: 0.38rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.k-table thead th {
+  background: var(--k-honey-soft);
+}
+
+.k-table tbody th {
+  background: var(--wiki-bg);
+  font-weight: 600;
+}
+
+.k-table .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.k-cell-he {
+  display: block;
+  direction: rtl;
+  text-align: right;
+  margin-top: 0.15rem;
+  font-family: "David Libre", "Times New Roman", "Noto Sans Hebrew", serif;
+  color: var(--wiki-muted);
+}
+
+.k-cell-ar {
+  display: block;
+  direction: rtl;
+  text-align: right;
+  margin-top: 0.15rem;
+  font-family: "Amiri", "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  color: var(--wiki-muted);
+}
+
+/* Letter-value calculations. */
+
+.k-gematria {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.35rem 0.6rem;
+  margin: 1rem 0 1.25rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--k-honey-line);
+  background: var(--k-comb);
+  max-width: 46rem;
+}
+
+.k-gematria-caption {
+  flex-basis: 100%;
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wiki-muted);
+}
+
+.k-gematria-letter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.7rem;
+}
+
+.k-gematria-glyph {
+  font-family: "David Libre", "Times New Roman", "Noto Sans Hebrew", serif;
+  font-size: 1.65rem;
+  line-height: 1.15;
+}
+
+.k-gematria-name {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wiki-muted);
+}
+
+.k-gematria-val {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.k-gematria-op {
+  padding-bottom: 1.15rem;
+  font-size: 1.05rem;
+  color: var(--wiki-muted);
+}
+
+.k-gematria-total {
+  padding-bottom: 0.95rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--k-honey-deep);
+}
+
+/* Closing signature block of an imported work. */
+
+.k-colophon {
+  max-width: 46rem;
+  margin: 1.6rem 0 0;
+  padding: 0.9rem 1rem;
+  border-top: 1px solid var(--k-honey-line);
+  border-bottom: 1px solid var(--k-honey-line);
+  background: var(--k-comb);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.k-colophon .he {
+  display: block;
+  margin: 0.25rem 0;
+  font-size: 1.2em;
+}
+
+.k-colophon-sig {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--wiki-muted);
+}
+
+/* Provenance line for imported works. */
+
+.k-provenance {
+  flex-basis: 100%;
+  margin-top: 0.15rem;
+  padding-top: 0.35rem;
+  border-top: 1px dotted var(--k-honey-line);
+}
+
+/* --------------------------------------------------------------- Misc --- */
+
+.k-note {
+  border: 1px solid var(--k-honey-line);
+  background: var(--k-comb);
+  padding: 0.7rem 0.85rem;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+  max-width: 46rem;
+}
+
+.k-note p {
+  margin: 0.3rem 0;
+  max-width: none;
+}
+
+.k-note p:first-child {
+  margin-top: 0;
+}
+
+.k-note p:last-child {
+  margin-bottom: 0;
+}
+
+.k-kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: #f2f2ee;
+  border: 1px solid var(--wiki-border-soft);
+  border-radius: 2px;
+  padding: 0 0.25em;
+}
+
+.k-dl {
+  margin: 0;
+}
+
+.k-dl dt {
+  font-weight: 700;
+  margin-top: 0.6rem;
+}
+
+.k-dl dd {
+  margin: 0.15rem 0 0 1.2rem;
+  max-width: 44rem;
+}
+
+.mw-footer .k-footer-brand {
+  font-weight: 600;
+  color: var(--wiki-text);
+}
+
+@media (max-width: 900px) {
+  .k-columns {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .k-controls-actions {
+    margin-left: 0;
+  }
+
+  .k-parallel-row,
+  .k-parallel.is-en-only .k-parallel-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
+  }
+
+  .mw-body-content .k-figure {
+    float: none;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  /* A wide comparative table has to stay inside the column here. `anywhere`
+     rather than `break-word` because only the former lets a long word shrink
+     the cell's min-content width, which is what pushes the page sideways. */
+  .k-table {
+    font-size: 0.82rem;
+  }
+
+  .k-table th,
+  .k-table td {
+    padding: 0.35rem 0.4rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media print {
+  .k-anchor,
+  .k-controls,
+  .k-search-fallback {
+    display: none !important;
+  }
+}

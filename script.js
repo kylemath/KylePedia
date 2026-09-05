@@ -9,6 +9,8 @@
   const backToTop = document.getElementById("backToTop");
   const printLink = document.getElementById("printLink");
   const contentRoot = document.querySelector(".mw-body-content");
+  const searchFallback = document.getElementById("searchFallback");
+  const libraryRoot = document.documentElement.getAttribute("data-kp-root") || "";
 
   const headings = Array.from(
     document.querySelectorAll(".mw-body-content h2 .mw-headline")
@@ -156,11 +158,15 @@
 
   function setupSearch() {
     if (!searchForm || !searchInput) return;
+    // Portal pages hand their search box to render.js, which queries the
+    // whole library instead of the current page.
+    if (searchForm.getAttribute("data-kp-search") === "library") return;
 
     searchForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const term = searchInput.value.trim();
       clearHighlights();
+      if (searchFallback) searchFallback.hidden = true;
 
       if (!term) return;
 
@@ -175,6 +181,95 @@
         "title",
         count ? `${count} match${count === 1 ? "" : "es"} on this page` : "No matches on this page"
       );
+
+      if (!count && searchFallback) {
+        const url = `${libraryRoot}browse.html?q=${encodeURIComponent(term)}`;
+        searchFallback.innerHTML = `No matches on this page — <a href="${url}">search the whole library for “${term}”</a>.`;
+        searchFallback.hidden = false;
+      }
+    });
+  }
+
+  // Parallel-text entries carry the original alongside the translation. The
+  // control lets a reader collapse to the translation alone without the other
+  // language leaving the page source.
+  function setupParallelToggle() {
+    const blocks = Array.from(document.querySelectorAll(".k-parallel"));
+    const mount = document.getElementById("parallelControl");
+    if (!blocks.length || !mount) return;
+
+    const original = mount.dataset.kpOriginal;
+    const originalLabel = original || "original";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "linkish";
+    // The markup ships collapsed, so the entry reads as prose before any
+    // script runs; the control opens the parallel columns.
+    let hidden = blocks.every((block) => block.classList.contains("is-en-only"));
+
+    const paint = () => {
+      button.textContent = hidden
+        ? `show the ${originalLabel}`
+        : `hide the ${originalLabel}`;
+      button.setAttribute("aria-pressed", String(hidden));
+      blocks.forEach((block) => block.classList.toggle("is-en-only", hidden));
+    };
+
+    button.addEventListener("click", () => {
+      hidden = !hidden;
+      paint();
+    });
+
+    mount.append(
+      original
+        ? `The original ${original} is set in parallel with this text. You can `
+        : "The original is set in parallel with this text. You can "
+    );
+    mount.appendChild(button);
+    mount.append(".");
+    paint();
+  }
+
+  // Permanent anchors: every section heading gets a control that copies its
+  // link, so a paragraph can be cited from outside without hunting for the id.
+  function setupHeadingAnchors() {
+    if (!contentRoot) return;
+
+    contentRoot.querySelectorAll("h2 .mw-headline").forEach((headline) => {
+      const section = headline.closest("section");
+      if (!section || !section.id) return;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "k-anchor";
+      button.textContent = "¶";
+      button.title = "Copy a link to this section";
+      button.setAttribute(
+        "aria-label",
+        `Copy a link to the section “${headline.textContent.trim()}”`
+      );
+
+      button.addEventListener("click", () => {
+        const url = `${window.location.origin}${window.location.pathname}#${section.id}`;
+        const done = () => {
+          button.classList.add("is-copied");
+          button.textContent = "copied";
+          window.setTimeout(() => {
+            button.classList.remove("is-copied");
+            button.textContent = "¶";
+          }, 1200);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done, () => {
+            window.location.hash = section.id;
+          });
+        } else {
+          window.location.hash = section.id;
+        }
+      });
+
+      headline.parentElement.appendChild(button);
     });
   }
 
@@ -197,5 +292,7 @@
   setupTocToggle();
   setupScrollSpy();
   setupSearch();
+  setupParallelToggle();
+  setupHeadingAnchors();
   setupUtilities();
 })();

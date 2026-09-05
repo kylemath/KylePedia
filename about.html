@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-kp-root="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Kypedia</title>
+    <meta
+      name="description"
+      content="What Kypedia is, how its entries are structured, and how collections and tags organise the library."
+    />
+    <meta name="kypedia:page" content="about" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="kypedia.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Jump to content</a>
+
+    <header class="mw-header" role="banner">
+      <div class="mw-header-inner">
+        <a class="mw-logo" href="index.html" aria-label="Kypedia main page">
+          <span class="mw-logo-mark" aria-hidden="true">K</span>
+          <span class="mw-logo-text">
+            <span class="mw-logo-wordmark">KYPEDIA</span>
+            <span class="mw-logo-tagline" data-kp-render="site-tagline"></span>
+          </span>
+        </a>
+        <form
+          class="mw-search"
+          role="search"
+          action="browse.html"
+          method="get"
+          data-kp-search="library"
+        >
+          <label class="visually-hidden" for="searchInput">Search Kypedia</label>
+          <input
+            id="searchInput"
+            type="search"
+            name="q"
+            placeholder="Search the library"
+            autocomplete="off"
+          />
+          <button type="submit">Search</button>
+        </form>
+        <nav class="mw-user-links" aria-label="Library tools">
+          <a href="browse.html">Browse</a>
+          <a href="about.html">About</a>
+          <a id="randomEntry" href="browse.html">Random entry</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="mw-page">
+      <aside class="mw-sidebar" aria-label="Main menu">
+        <nav>
+          <h2 class="sidebar-heading">Library</h2>
+          <ul class="sidebar-nav">
+            <li><a href="index.html">Main page</a></li>
+            <li><a href="browse.html">Browse all entries</a></li>
+            <li><a href="browse.html?group=letter">A–Z index</a></li>
+            <li><a href="about.html">About Kypedia</a></li>
+          </ul>
+
+          <h2 class="sidebar-heading">On this page</h2>
+          <ul class="sidebar-nav">
+            <li><a href="#Purpose">Purpose</a></li>
+            <li><a href="#Conventions">Conventions</a></li>
+            <li><a href="#Collections">Collections</a></li>
+            <li><a href="#Tags">Tags</a></li>
+            <li><a href="#Status">Status labels</a></li>
+            <li><a href="#Writing_a_new_entry">Writing a new entry</a></li>
+            <li><a href="#Files">Files</a></li>
+          </ul>
+
+          <h2 class="sidebar-heading">For editors</h2>
+          <ul class="sidebar-nav">
+            <li><a href="AGENTS.md">Authoring spec</a></li>
+            <li><a href="templates/article-template.html">Article template</a></li>
+            <li><a href="library.js">library.js</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main id="content" class="mw-content" role="main">
+        <div class="k-breadcrumb">
+          <a href="index.html">Kypedia</a>
+          <span class="k-sep">›</span> About
+        </div>
+
+        <h1 class="firstHeading">About Kypedia</h1>
+
+        <div class="mw-body-content">
+          <p class="lead">
+            <b>Kypedia</b> is a private reference library in encyclopedia form.
+            It gathers long-form writing and research — essays, studies, notes,
+            source lists — into one place where each piece can be linked,
+            cited, and returned to. It makes no claim to cover a field
+            systematically; it covers what its author has actually written
+            about.
+          </p>
+
+          <section id="Purpose">
+            <h2><span class="mw-headline">Purpose</span></h2>
+            <p>
+              Long pieces of writing tend to get lost. Kept as documents they
+              are unlinkable; kept as blog posts they are ordered by date,
+              which is rarely the order that matters. The encyclopedia form
+              solves both problems at once: stable titles, stable section
+              anchors, cross-references between entries, and sources attached
+              to the claims they support.
+            </p>
+            <p>
+              The design follows Wikipedia's reading conventions deliberately.
+              Readers already know how to use a lead paragraph, a table of
+              contents, a footnote marker, and a category footer, and that
+              familiarity is worth more than novelty.
+            </p>
+          </section>
+
+          <section id="Conventions">
+            <h2><span class="mw-headline">Conventions</span></h2>
+            <dl class="k-dl">
+              <dt>Lead first</dt>
+              <dd>
+                Every entry opens with a paragraph that answers the question in
+                its title, in plain language, without waiting for the argument
+                to warm up.
+              </dd>
+              <dt>Stable headings</dt>
+              <dd>
+                Section anchors are permanent. Once an entry is published, a
+                heading may be reworded only if its <code>id</code> stays the
+                same, so that existing links keep landing in the right place.
+                Hovering a heading reveals a
+                <span class="k-kbd">¶</span> control that copies its permalink.
+              </dd>
+              <dt>Sources in place</dt>
+              <dd>
+                Quotations are given in full where they are discussed, with the
+                original language alongside a translation where that matters,
+                and numbered footnotes collected under <i>References</i>.
+                Uncertainty is stated rather than smoothed over.
+              </dd>
+              <dt>One collection, many tags</dt>
+              <dd>
+                An entry sits on exactly one shelf and reaches everything else
+                through its tags. Tags come from a controlled vocabulary so the
+                index stays usable as the library grows.
+              </dd>
+              <dt>No dead ends</dt>
+              <dd>
+                Each entry ends with <i>See also</i>, <i>References</i>, and a
+                collection-and-tag footer, so there is always a way further in.
+              </dd>
+            </dl>
+          </section>
+
+          <section id="Collections">
+            <h2><span class="mw-headline">Collections</span></h2>
+            <p>
+              Collections are the shelves. They are broad on purpose — a shelf
+              that needs splitting is a good sign, and splitting one is a small
+              edit.
+            </p>
+            <div data-kp-render="collections"></div>
+          </section>
+
+          <section id="Tags">
+            <h2><span class="mw-headline">Tags</span></h2>
+            <p>
+              Tags are grouped into <b>facets</b> so that a few hundred of them
+              remain readable. A tag answers one question about an entry: what
+              it is about (<i>subject</i>), what body of material it works from
+              (<i>source</i>), who it discusses at length (<i>person</i>), where
+              (<i>place</i>), when (<i>period</i>), and how the work was done
+              (<i>method</i>). Anything that does not answer one of those is
+              probably a collection or a section heading instead.
+            </p>
+            <p>
+              The vocabulary is declared once in <code>library.js</code>; an
+              entry may only use tags that already exist there. Below is
+              everything currently defined, with counts for tags in use.
+            </p>
+            <div data-kp-render="facet-legend"></div>
+          </section>
+
+          <section id="Status">
+            <h2><span class="mw-headline">Status labels</span></h2>
+            <p>
+              Entries are published while still in motion, so each carries a
+              maturity label in its metadata strip and in every listing.
+            </p>
+            <div data-kp-render="status-legend"></div>
+          </section>
+
+          <section id="Writing_a_new_entry">
+            <h2><span class="mw-headline">Writing a new entry</span></h2>
+            <p>Adding to the library is two edits and no build step.</p>
+            <ol>
+              <li>
+                Copy
+                <a href="templates/article-template.html">templates/article-template.html</a>
+                to <code>articles/&lt;slug&gt;.html</code>, where the slug is
+                lowercase, hyphenated, and permanent.
+              </li>
+              <li>
+                Fill in the <code>kypedia:*</code> meta tags at the top of the
+                file, then write the entry into the section scaffold.
+              </li>
+              <li>
+                Append a matching record to <code>KYPEDIA.entries</code> in
+                <code>library.js</code>. Nothing appears in any listing until
+                this record exists.
+              </li>
+              <li>
+                Open the browser console. The renderer validates the registry
+                on every page load and reports missing fields, unknown
+                collections, and tags outside the vocabulary.
+              </li>
+            </ol>
+            <div class="k-note">
+              <p>
+                <b>Writing with an agent?</b> Point it at
+                <a href="AGENTS.md">AGENTS.md</a>. That file is the normative
+                specification: file layout, required metadata, the exact HTML
+                skeleton, citation markup, tag rules, and the checks to run
+                before finishing. This page is the human summary of it.
+              </p>
+            </div>
+          </section>
+
+          <section id="Files">
+            <h2><span class="mw-headline">Files</span></h2>
+            <dl class="k-dl">
+              <dt><code>index.html</code></dt>
+              <dd>Main page: collections, featured entry, recent updates, tag cloud.</dd>
+              <dt><code>browse.html</code></dt>
+              <dd>
+                Full index. All filters are URL parameters
+                (<code>q</code>, <code>collection</code>, <code>tag</code>,
+                <code>status</code>, <code>group</code>, <code>sort</code>), so
+                any view is linkable.
+              </dd>
+              <dt><code>library.js</code></dt>
+              <dd>
+                The registry: site details, collections, facets, tag vocabulary,
+                status definitions, and one record per entry. The single source
+                of truth for every listing.
+              </dd>
+              <dt><code>render.js</code></dt>
+              <dd>
+                Fills each <code>data-kp-render</code> slot from the registry
+                and validates it. Pages declare what they want; the renderer
+                decides what goes there.
+              </dd>
+              <dt><code>styles.css</code> · <code>kypedia.css</code></dt>
+              <dd>
+                Reading layout, then the Kypedia brand layer on top of it.
+              </dd>
+              <dt><code>script.js</code></dt>
+              <dd>
+                Per-page behaviour: table of contents, scroll tracking, find on
+                page, heading permalinks, print.
+              </dd>
+              <dt><code>articles/</code> · <code>templates/</code></dt>
+              <dd>One file per entry, and the skeleton they start from.</dd>
+            </dl>
+          </section>
+        </div>
+
+        <footer class="mw-footer">
+          <p>
+            <span class="k-footer-brand">Kypedia</span> — static HTML, no
+            dependencies, no build step. It runs from a local file or any static
+            host.
+          </p>
+          <p>
+            <button type="button" id="backToTop" class="linkish">Back to top</button>
+          </p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="library.js"></script>
+    <script src="render.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

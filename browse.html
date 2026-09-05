@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-kp-root="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse the library — Kypedia</title>
+    <meta
+      name="description"
+      content="The full index of Kypedia entries, filterable by collection, tag, status, and text."
+    />
+    <meta name="kypedia:page" content="browse" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="kypedia.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Jump to content</a>
+
+    <header class="mw-header" role="banner">
+      <div class="mw-header-inner">
+        <a class="mw-logo" href="index.html" aria-label="Kypedia main page">
+          <span class="mw-logo-mark" aria-hidden="true">K</span>
+          <span class="mw-logo-text">
+            <span class="mw-logo-wordmark">KYPEDIA</span>
+            <span class="mw-logo-tagline" data-kp-render="site-tagline"></span>
+          </span>
+        </a>
+        <form
+          class="mw-search"
+          role="search"
+          action="browse.html"
+          method="get"
+          data-kp-search="library"
+        >
+          <label class="visually-hidden" for="searchInput">Search Kypedia</label>
+          <input
+            id="searchInput"
+            type="search"
+            name="q"
+            placeholder="Search the library"
+            autocomplete="off"
+          />
+          <button type="submit">Search</button>
+        </form>
+        <nav class="mw-user-links" aria-label="Library tools">
+          <a href="browse.html">Browse</a>
+          <a href="about.html">About</a>
+          <a id="randomEntry" href="browse.html">Random entry</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="mw-page">
+      <aside class="mw-sidebar" aria-label="Main menu">
+        <nav>
+          <h2 class="sidebar-heading">Library</h2>
+          <ul class="sidebar-nav">
+            <li><a href="index.html">Main page</a></li>
+            <li><a href="browse.html">Browse all entries</a></li>
+            <li><a href="browse.html?group=letter">A–Z index</a></li>
+            <li><a href="about.html">About Kypedia</a></li>
+          </ul>
+
+          <h2 class="sidebar-heading">Collections</h2>
+          <ul class="sidebar-nav" data-kp-render="nav-collections"></ul>
+
+          <h2 class="sidebar-heading">By status</h2>
+          <ul class="sidebar-nav">
+            <li><a href="browse.html?status=stable">Stable</a></li>
+            <li><a href="browse.html?status=working">Working</a></li>
+            <li><a href="browse.html?status=draft">Draft</a></li>
+            <li><a href="browse.html?status=seed">Seed</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main id="content" class="mw-content k-portal" role="main">
+        <div class="k-breadcrumb">
+          <a href="index.html">Kypedia</a>
+          <span class="k-sep">›</span> Index
+        </div>
+
+        <h1 class="firstHeading">Browse the library</h1>
+
+        <form class="k-controls" id="browseControls" action="browse.html" method="get">
+          <div class="k-field">
+            <label for="qField">Text</label>
+            <input id="qField" type="search" name="q" placeholder="title, summary, tag" />
+          </div>
+          <div class="k-field">
+            <label for="collectionField">Collection</label>
+            <select id="collectionField" name="collection">
+              <option value="">All collections</option>
+            </select>
+          </div>
+          <div class="k-field">
+            <label for="statusField">Status</label>
+            <select id="statusField" name="status">
+              <option value="">Any status</option>
+            </select>
+          </div>
+          <div class="k-field">
+            <label for="groupField">Group by</label>
+            <select id="groupField" name="group">
+              <option value="collection">Collection</option>
+              <option value="letter">First letter</option>
+            </select>
+          </div>
+          <div class="k-field">
+            <label for="sortField">Sort</label>
+            <select id="sortField" name="sort">
+              <option value="updated">Recently updated</option>
+              <option value="title">Title</option>
+            </select>
+          </div>
+          <input type="hidden" name="tag" />
+          <div class="k-controls-actions">
+            <button type="submit" class="linkish">Apply</button>
+            <span class="k-sep">·</span>
+            <a href="browse.html">Reset</a>
+          </div>
+        </form>
+
+        <div data-kp-render="browse"></div>
+
+        <section class="k-panel" id="Tags">
+          <div class="k-panel-head">
+            <h2>All tags in use</h2>
+            <span class="k-panel-more"><a href="about.html#Tags">How tags work &rsaquo;</a></span>
+          </div>
+          <div class="k-panel-body">
+            <div data-kp-render="facet-legend"></div>
+          </div>
+        </section>
+
+        <footer class="mw-footer">
+          <p>
+            <span class="k-footer-brand">Kypedia</span> — filters are plain URL
+            parameters, so any view here can be bookmarked or linked:
+            <code>browse.html?collection=language&amp;status=stable</code>.
+          </p>
+          <p>
+            <button type="button" id="backToTop" class="linkish">Back to top</button>
+          </p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="library.js"></script>
+    <script src="render.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

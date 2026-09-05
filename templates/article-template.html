@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+  Kypedia entry template
+  ----------------------------------------------------------------------------
+  Copy this file to articles/<slug>.html, then:
+    1. replace every {{PLACEHOLDER}}
+    2. delete the sections you do not need and add the ones you do
+    3. append a matching record to KYPEDIA.entries in library.js
+    4. load the page and check the browser console for registry warnings
+
+  Rules that matter (full spec in AGENTS.md):
+    - data-kp-root stays "../" for anything inside articles/
+    - <section id="..."> ids are permanent once published: Title_Case_With_Underscores
+    - the slug in <meta name="kypedia:slug"> must match the record in library.js
+    - the metadata strip, tag footer and related list are rendered from the
+      registry; do not hand-write them here
+-->
+<html lang="en" data-kp-root="../">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{TITLE}} — Kypedia</title>
+    <meta name="description" content="{{ONE_SENTENCE_SUMMARY}}" />
+
+    <!-- Kypedia entry metadata. Must match this entry's record in library.js. -->
+    <meta name="kypedia:slug" content="{{SLUG}}" />
+    <meta name="kypedia:title" content="{{TITLE}}" />
+    <meta name="kypedia:collection" content="{{COLLECTION_ID}}" />
+    <meta name="kypedia:kind" content="article" />
+    <meta name="kypedia:status" content="draft" />
+    <meta name="kypedia:created" content="{{YYYY-MM-DD}}" />
+    <meta name="kypedia:updated" content="{{YYYY-MM-DD}}" />
+    <meta name="kypedia:tags" content="{{tag-one, tag-two, tag-three}}" />
+
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../kypedia.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Jump to content</a>
+
+    <header class="mw-header" role="banner">
+      <div class="mw-header-inner">
+        <a class="mw-logo" href="../index.html" aria-label="Kypedia main page">
+          <span class="mw-logo-mark" aria-hidden="true">K</span>
+          <span class="mw-logo-text">
+            <span class="mw-logo-wordmark">KYPEDIA</span>
+            <span class="mw-logo-tagline" data-kp-render="site-tagline"></span>
+          </span>
+        </a>
+        <form class="mw-search" role="search" action="#" method="get">
+          <label class="visually-hidden" for="searchInput">Find on this page</label>
+          <input
+            id="searchInput"
+            type="search"
+            name="search"
+            placeholder="Find on this page"
+            autocomplete="off"
+          />
+          <button type="submit">Find</button>
+          <p class="k-search-fallback" id="searchFallback" hidden></p>
+        </form>
+        <nav class="mw-user-links" aria-label="Library tools">
+          <a href="../browse.html">Browse</a>
+          <a href="../about.html">About</a>
+          <a id="randomEntry" href="../browse.html">Random entry</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="mw-page">
+      <aside class="mw-sidebar" aria-label="Main menu">
+        <nav>
+          <h2 class="sidebar-heading">Library</h2>
+          <ul class="sidebar-nav">
+            <li><a href="../index.html">Main page</a></li>
+            <li><a href="../browse.html">Browse all entries</a></li>
+            <li><a href="../browse.html?group=letter">A–Z index</a></li>
+            <li><a href="../about.html">About Kypedia</a></li>
+          </ul>
+
+          <h2 class="sidebar-heading">Collections</h2>
+          <ul class="sidebar-nav" data-kp-render="nav-collections"></ul>
+
+          <h2 class="sidebar-heading">This entry</h2>
+          <ul class="sidebar-nav">
+            <li><a href="#toc">Contents</a></li>
+            <li><a href="#References">References</a></li>
+            <li><a href="#Further_reading">Further reading</a></li>
+            <li><a href="#Elsewhere_in_Kypedia">Related entries</a></li>
+            <li><a id="printLink" href="#">Printable version</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main id="content" class="mw-content" role="main">
+        <div class="k-breadcrumb">
+          <a href="../index.html">Kypedia</a>
+          <span class="k-sep">›</span>
+          <a href="../browse.html?collection={{COLLECTION_ID}}">{{COLLECTION_TITLE}}</a>
+          <span class="k-sep">›</span> {{TITLE}}
+        </div>
+
+        <h1 id="firstHeading" class="firstHeading">{{TITLE}}</h1>
+
+        <div class="mw-body-content">
+          <!-- Rendered from library.js: status, kind, length, dates. -->
+          <div class="k-article-meta" data-kp-render="article-meta"></div>
+
+          <!-- Optional. Use only to steer a reader who wants a different topic. -->
+          <div class="hatnote">
+            This entry is about {{SCOPE}}. For {{OTHER_TOPIC}}, see
+            <a href="../articles/{{OTHER_SLUG}}.html">{{OTHER_TITLE}}</a>.
+          </div>
+
+          <div class="mw-article-toolbar" role="navigation" aria-label="Entry views">
+            <div class="vector-menu-tabs">
+              <a class="selected" href="#content">Entry</a>
+              <a href="#References">Sources</a>
+              <a href="#Categories">Tags</a>
+            </div>
+            <div class="vector-menu-views">
+              <a class="selected" href="#content">Read</a>
+              <a href="../browse.html?collection={{COLLECTION_ID}}">Collection</a>
+              <a href="#toc">Contents</a>
+            </div>
+          </div>
+
+          <!-- Optional fact box. Delete if the entry has no stable key/value data. -->
+          <aside class="infobox">
+            <div class="infobox-title">{{TITLE}}</div>
+            <table>
+              <tbody>
+                <tr>
+                  <th>{{FIELD}}</th>
+                  <td>{{VALUE}}</td>
+                </tr>
+                <tr>
+                  <th>{{FIELD}}</th>
+                  <td>{{VALUE}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </aside>
+
+          <!--
+            Lead: one or two paragraphs that answer the title in plain language.
+            Bold the subject on first mention. No footnote-free claims that a
+            reader would want to check.
+          -->
+          <p class="lead">
+            <b>{{TITLE}}</b> is {{THE_ANSWER_TO_THE_TITLE}}.<sup
+              id="cite_ref-1"
+              class="reference"
+              ><a href="#cite_note-1">[1]</a></sup
+            >
+          </p>
+
+          <!-- Built by script.js from the h2 headings below. Leave it empty. -->
+          <div id="toc" class="toc" role="navigation" aria-labelledby="toctitle">
+            <div class="toctitle">
+              <h2 id="toctitle">Contents</h2>
+              <span class="toc-toggle">
+                [<a href="#" id="toggleToc" aria-controls="toc-list" aria-expanded="true">hide</a>]
+              </span>
+            </div>
+            <ul id="toc-list"></ul>
+          </div>
+
+          <!-- Body sections. Ids are permanent; keep them descriptive. -->
+          <section id="{{Section_One}}">
+            <h2><span class="mw-headline">{{Section one}}</span></h2>
+            <p>{{PROSE}}</p>
+          </section>
+
+          <section id="{{Section_Two}}">
+            <h2><span class="mw-headline">{{Section two}}</span></h2>
+            <p>{{PROSE}}</p>
+
+            <!--
+              Block quotation. The three-line form (original / transliteration /
+              translation) is for quoted primary text in another language; drop
+              the first two spans for an English quotation.
+            -->
+            <blockquote class="verse">
+              <span class="verse-he" lang="he" dir="rtl">{{ORIGINAL}}</span>
+              <span class="verse-tr">{{TRANSLITERATION}}</span>
+              <span class="verse-en">“{{TRANSLATION}}”</span>
+              <span class="verse-ref">{{CITATION}}</span>
+            </blockquote>
+          </section>
+
+          <section id="Scholarly_notes">
+            <h2><span class="mw-headline">Scholarly notes</span></h2>
+            <p>
+              {{WHERE_THE_ARGUMENT_IS_CONTESTED_OR_UNCERTAIN}}
+            </p>
+          </section>
+
+          <section id="See_also">
+            <h2><span class="mw-headline">See also</span></h2>
+            <ul>
+              <li><a href="{{URL}}">{{LINK_TEXT}}</a></li>
+            </ul>
+          </section>
+
+          <!--
+            Footnotes. Every [n] marker in the body needs a matching li here,
+            numbered in order of first appearance, with a backlink.
+          -->
+          <section id="References">
+            <h2><span class="mw-headline">References</span></h2>
+            <ol class="references">
+              <li id="cite_note-1">
+                <span class="mw-cite-backlink">
+                  <a href="#cite_ref-1" class="cite-backlink">^</a>
+                </span>
+                {{AUTHOR}}, <cite>{{WORK}}</cite> ({{PLACE}}: {{PUBLISHER}},
+                {{YEAR}}), {{LOCATOR}}.
+              </li>
+            </ol>
+            <p class="cite-caveat">
+              {{ANY_CONVENTION_THE_READER_NEEDS_TO_KNOW_ABOUT_THESE_CITATIONS}}
+            </p>
+          </section>
+
+          <section id="Further_reading">
+            <h2><span class="mw-headline">Further reading</span></h2>
+            <ul>
+              <li>
+                {{AUTHOR}}. <i>{{WORK}}</i>. {{PLACE}}: {{PUBLISHER}}, {{YEAR}}.
+                ({{WHY_IT_IS_WORTH_READING}})
+              </li>
+            </ul>
+          </section>
+
+          <section id="External_links">
+            <h2><span class="mw-headline">External links</span></h2>
+            <ul>
+              <li>
+                <a href="{{URL}}" target="_blank" rel="noopener noreferrer">{{TITLE}}</a>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Rendered from library.js: explicit `related` slugs, else tag overlap. -->
+          <section id="Elsewhere_in_Kypedia">
+            <h2><span class="mw-headline">Elsewhere in Kypedia</span></h2>
+            <div data-kp-render="article-related" data-kp-limit="6"></div>
+          </section>
+
+          <!-- Rendered from library.js: collection plus tag chips. -->
+          <div class="catlinks" id="Categories" data-kp-render="article-tags"></div>
+        </div>
+
+        <footer class="mw-footer">
+          <p>
+            An entry in <span class="k-footer-brand">Kypedia</span>, a personal
+            reference library. Quoted texts belong to their sources; the study
+            and translations are the author's own.
+          </p>
+          <p>
+            <a href="../index.html">Main page</a> ·
+            <a href="../browse.html?collection={{COLLECTION_ID}}">{{COLLECTION_TITLE}}</a> ·
+            <button type="button" id="backToTop" class="linkish">Back to top</button>
+          </p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="../library.js"></script>
+    <script src="../render.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>
