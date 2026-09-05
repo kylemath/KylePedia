@@ -1,0 +1,14 @@
+{
+  "id": "bees",
+  "title": "Bees",
+  "oneLiner": "A reference library of long-form writing, kept in encyclopedia form: stable",
+  "kind": "project",
+  "status": "active",
+  "screenshot": "./screenshot.png",
+  "server": {
+    "type": "static",
+    "port": 8080,
+    "openPath": "/",
+    "autoStart": false
+  }
+}

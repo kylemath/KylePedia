@@ -43,3 +43,9 @@ citation markup, tag facets, status labels, the pre-flight checklist — are in
 
 Nothing appears anywhere on the site until its registry record exists. That is
 deliberate: one source of truth, and no hand-maintained lists to drift.
+
+## Preview
+
+<p align="center">
+  <img src="screenshot.png" alt="Project screenshot" width="720" />
+</p>
