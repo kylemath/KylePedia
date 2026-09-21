@@ -176,6 +176,8 @@ window.KYPEDIA = {
     "pop-culture": { label: "Popular culture", facet: "subject" },
     /* source */
     deuteronomy: { label: "Deuteronomy", facet: "source" },
+    exodus: { label: "Exodus", facet: "source" },
+    "yom-kippur": { label: "Yom Kippur", facet: "subject" },
     psalms: { label: "Psalms", facet: "source" },
     isaiah: { label: "Isaiah", facet: "source" },
     talmud: { label: "Talmud", facet: "source" },
@@ -220,6 +222,74 @@ window.KYPEDIA = {
      Required: slug, title, path, collection, kind, status, summary, tags,
      created, updated. Optional: subtitle, words, featured, related, source. */
   entries: [
+    {
+      slug: "place-you-are-afraid-to-look",
+      title: "The place you are most afraid to look",
+      subtitle: "A dvar Torah for Yom Kippur",
+      path: "articles/place-you-are-afraid-to-look.html",
+      collection: "ideas",
+      kind: "essay",
+      status: "draft",
+      summary:
+        "A Yom Kippur sermon arguing that lasting joy is found inside the " +
+        "practice we are avoiding, not outside it. The avoidance is not only " +
+        "grief, for a friend's death and a cousin's yahrzeit, but the fear " +
+        "of committing to belief and action before we feel certain. Using " +
+        "Frank Jackson's Mary thought experiment in reverse, John Wesley's " +
+        "advice to preach faith before having it, Aristotle on virtue as a " +
+        "habit, and the Talmud's na'aseh v'nishma, the sermon argues that " +
+        "action has to come before understanding, and closes on the Yom " +
+        "Kippur morning reading: you are already standing here with what " +
+        "the doing requires.",
+      tags: [
+        "yom-kippur",
+        "ethics",
+        "consciousness",
+        "psychoanalysis",
+        "deuteronomy",
+        "exodus",
+        "talmud",
+        "hebrew-language",
+        "sigmund-freud",
+        "comparative-analysis",
+        "contemporary",
+      ],
+      words: 5640,
+      created: "2026-09-21",
+      updated: "2026-09-21",
+      related: ["divine-fracture", "deuteronomy-register-shift"],
+    },
+    {
+      slug: "deuteronomy-register-shift",
+      title: "The register shift in Deuteronomy",
+      path: "articles/deuteronomy-register-shift.html",
+      collection: "language",
+      kind: "essay",
+      status: "working",
+      summary:
+        "A word-by-word count of the Five Books shows that Deuteronomy's " +
+        "vocabulary is not larger than the growth curve of Genesis through " +
+        "Numbers already predicts. What changes is grammatical person: " +
+        "known roots are recast as second-person address — \u201cyou shall " +
+        "keep,\u201d \u201cyour heart\u201d — at two to three times their " +
+        "earlier rate, alongside a smaller, genuinely new core of legal " +
+        "and covenantal terms such as lamad, \u201cto teach,\u201d absent " +
+        "from the Torah before Deuteronomy 4:1.",
+      tags: [
+        "hebrew-language",
+        "deuteronomy",
+        "moses",
+        "rhetoric",
+        "close-reading",
+        "philology",
+        "comparative-analysis",
+        "antiquity",
+      ],
+      words: 2770,
+      created: "2026-09-12",
+      updated: "2026-09-12",
+      related: ["devarim-dvorim-wordplay"],
+    },
     {
       slug: "divine-fracture",
       title: "The Divine Fracture",
